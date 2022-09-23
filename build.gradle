@@ -1,0 +1,29 @@
+plugins {
+    id'java'
+}
+
+group 'amazon2'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 13
+
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'tech.grasshopper', name:'extentreports-cucumber7-adapter', version:'1.7.0'
+    testImplementation 'io.cucumber:cucumber-java:7.5.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.5.0'
+}
+
+test{
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
+
+tasks.withType(Test){
+    scanForTestClasses = false
+    include "**/*Test.class"
+}
